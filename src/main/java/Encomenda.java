@@ -7,7 +7,7 @@ import java.util.UUID;
 public class Encomenda {
     private String aparelho;
     private String descricao;
-    private final String id;
+    private String id;
     private String proprietario;
     private LocalDate dataEntrada = LocalDate.now();
     private LocalDate dataSaidaPrevista = LocalDate.now().plusDays(15);
@@ -53,6 +53,10 @@ public class Encomenda {
 
     public LocalDate getDataSaidaPrevista() {
         return dataSaidaPrevista;
+    }
+
+    public String getId() {
+        return this.id;
     }
 
     @Override

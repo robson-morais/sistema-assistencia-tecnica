@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class AssistenciaTecnicaTest {
 
     private SistemaAsistenciaTecnica sistema;
-    private Map<Integer, Encomenda> encomendas;
+    private Map<String, Encomenda> encomendas;
 
     @BeforeEach
     void setUp() {
@@ -23,11 +23,6 @@ public class AssistenciaTecnicaTest {
 
 
         Encomenda o = new Encomenda("iPhone 5", "Reparo tela", "Robsohjhn");
-        try {
-            sistema.cadastrarEncomenda(o.getId(), o);
-        } catch (CadastroException e) {
-            System.out.println(e.getMessage());
-        }
 
         Encomenda o2 = new Encomenda("iPhone 5", "Reparo tela", "Robsohjhn");
         //assertThrows(CadastroException.class, ()-> sistema.cadastrarEncomenda("));
