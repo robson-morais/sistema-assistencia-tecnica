@@ -2,11 +2,12 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class Encomenda {
     private String aparelho;
     private String descricao;
-    private int id;
+    private final String id;
     private String proprietario;
     private LocalDate dataEntrada = LocalDate.now();
     private LocalDate dataSaidaPrevista = LocalDate.now().plusDays(15);
@@ -15,16 +16,11 @@ public class Encomenda {
         this.aparelho = aparelho;
         this.descricao = descricao;
         this.proprietario = proprietario;
-        this.id = getId();
+        this.id = UUID.randomUUID().toString();
     }
 
     public Encomenda() {
         this("", "", "");
-    }
-
-    public int generateId(){
-        int i = (int) Math.random()*100;
-        return i;
     }
 
     public String getAparelho() {
@@ -43,11 +39,6 @@ public class Encomenda {
         this.descricao = descricao;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-
     public String getProprietario() {
         return proprietario;
     }
@@ -60,16 +51,8 @@ public class Encomenda {
         return dataEntrada;
     }
 
-    public void setDataEntrada(LocalDate dataEntrada) {
-        this.dataEntrada = dataEntrada;
-    }
-
     public LocalDate getDataSaidaPrevista() {
         return dataSaidaPrevista;
-    }
-
-    public void setDataSaidaPrevista(LocalDate dataSaidaPrevista) {
-        this.dataSaidaPrevista = dataSaidaPrevista;
     }
 
     @Override
@@ -77,6 +60,11 @@ public class Encomenda {
         return "Objeto { " +
                 "Aparelho = " + aparelho  + ", descrição = " + descricao + ", proprietario = " + proprietario +
                 ", Data de entrada = " + dataEntrada + ", Data de saida prevista = " + dataSaidaPrevista + '}';
+    }
+
+    public static void main(String[] args) {
+        int i = (int) Math.random()*100;
+        System.out.println(i);
     }
 }
 

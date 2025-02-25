@@ -1,8 +1,5 @@
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import Exceptions.CadastroException;
+
 import java.util.Map;
 
 public class SistemaAsistenciaTecnica {
@@ -21,18 +18,4 @@ public class SistemaAsistenciaTecnica {
         }
     }
 
-    //TODO
-    public static void main(String[] args) throws CadastroException {
-        Map<Integer, Encomenda> encomendas = new HashMap<>();
-        SistemaAsistenciaTecnica sistema = new SistemaAsistenciaTecnica(encomendas);
-
-        //todo: cadastraEncomenda
-        Encomenda o = new Encomenda("Tablet Apple iPad Air 5", "conector danificado", "Robson");
-        sistema.cadastrarEncomenda(o.getId(), o);
-        System.out.println(o.toString());
-        //sistema.cadastrarEncomenda(o.getId(), o); //Deve lançar exceção aqui.
-
-
-        //todo:
-    }
 }
