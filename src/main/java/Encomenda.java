@@ -7,21 +7,27 @@ import java.util.UUID;
 public class Encomenda {
     private String aparelho;
     private String descricao;
-    private String id;
+    private Categoria categoria;
     private String proprietario;
     private LocalDate dataEntrada = LocalDate.now();
     private LocalDate dataSaidaPrevista = LocalDate.now().plusDays(15);
+    private String status;
+    private int id;
 
-    public Encomenda(String aparelho, String proprietario, String descricao) {
+
+    public Encomenda(String cliente, String aparelho, String descricao, Categoria categoria, int codigo) {
+        this.proprietario = cliente;
         this.aparelho = aparelho;
         this.descricao = descricao;
-        this.proprietario = proprietario;
-        this.id = UUID.randomUUID().toString();
+        this.categoria = categoria;
+        this.id = codigo;
+        this.status = "'A FAZER'";
     }
 
     public Encomenda() {
-        this("", "", "");
+        this("", "", "", Categoria.INDEFINIDO, 0);
     }
+
 
     public String getAparelho() {
         return aparelho;
@@ -47,6 +53,10 @@ public class Encomenda {
         this.proprietario = proprietario;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
     public LocalDate getDataEntrada() {
         return dataEntrada;
     }
@@ -55,20 +65,23 @@ public class Encomenda {
         return dataSaidaPrevista;
     }
 
-    public String getId() {
+    public int getId() {
         return this.id;
+    }
+
+    public String getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
     public String toString() {
-        return "Objeto { " +
+        return "Objeto com status "+ status.toUpperCase() + " { " +
                 "Aparelho = " + aparelho  + ", descrição = " + descricao + ", proprietario = " + proprietario +
                 ", Data de entrada = " + dataEntrada + ", Data de saida prevista = " + dataSaidaPrevista + '}';
-    }
-
-    public static void main(String[] args) {
-        int i = (int) Math.random()*100;
-        System.out.println(i);
     }
 }
 
