@@ -23,12 +23,9 @@ public class SistemaAsistenciaTecnica {
     }
 
     public void pesquisarParaAlterar (int pesquisaId, String novoStatus) throws PesquisaException {
-        if (this.encomendas.values().contains(pesquisaId)) {
-
-            Encomenda encomendaEncontrada = this.encomendas.get(pesquisaId);
-            System.out.println("status antes: " + encomendaEncontrada.getStatus());
+        Encomenda encomendaEncontrada = this.encomendas.get(pesquisaId);
+        if (this.encomendas.values().contains(encomendaEncontrada)) {
             encomendaEncontrada.setStatus(novoStatus);
-            System.out.println("status depois: " + encomendaEncontrada.getStatus());
         } else {
             throw new PesquisaException("Serviço não encontrado no sistema.");
         }
@@ -36,7 +33,7 @@ public class SistemaAsistenciaTecnica {
     }
 
     public String consultarServicosPendentes () throws PesquisaException {
-        String txtAfazer = "============";
+        String txtAfazer = "============\n";
         if (!this.encomendas.isEmpty()) {
             for (Encomenda enc: this.encomendas.values()) {
                 if (enc.getStatus().equalsIgnoreCase("A fazer")){
@@ -49,7 +46,7 @@ public class SistemaAsistenciaTecnica {
     }
 
     public String consultarServicosProntos () throws PesquisaException {
-        String txtFeito = "============";
+        String txtFeito = "============\n";
         if (!this.encomendas.isEmpty()) {
             for (Encomenda enc: this.encomendas.values()) {
                 if (enc.getStatus().equalsIgnoreCase("Feito")){

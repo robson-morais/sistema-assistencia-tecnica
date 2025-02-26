@@ -21,7 +21,7 @@ public class Encomenda {
         this.descricao = descricao;
         this.categoria = categoria;
         this.id = codigo;
-        this.status = "'A FAZER'";
+        this.status = "A FAZER";
     }
 
     public Encomenda() {
@@ -79,9 +79,9 @@ public class Encomenda {
 
     @Override
     public String toString() {
-        return "Objeto com status "+ status.toUpperCase() + " { " +
-                "Aparelho = " + aparelho  + ", descrição = " + descricao + ", proprietario = " + proprietario +
-                ", Data de entrada = " + dataEntrada + ", Data de saida prevista = " + dataSaidaPrevista + '}';
+        return "Objeto com status " + status.toUpperCase() + " {\n" +
+                "Aparelho = " + aparelho  + ",\ndescrição = " + descricao + ",\nproprietario = " + proprietario +
+                ",\nData de entrada = " + dataEntrada + ",\nData de saida prevista = " + dataSaidaPrevista + "\nID = " + id + "}";
     }
 }
 

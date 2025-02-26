@@ -16,7 +16,7 @@ public class Main {
         while (!sair) {
             contador = Integer.parseInt(JOptionPane.showInputDialog("Gerenciamento de Atendimentos:\n1. Cadastrar serviço;\n2. Consultar serviços agendados;\n3. Consultar serviços prontos\n4. Alterar status de serviço\n5. Sair"));
             switch (contador) {
-                case 1:
+                case 1: //Cadastrar serviço:
                     String cliente =  JOptionPane.showInputDialog("Nome do cliente: ");
                     String aparelho = JOptionPane.showInputDialog("Tipo de aparelho: ");
                     String descricao = JOptionPane.showInputDialog("Descrição do Serviço: ");
@@ -25,7 +25,7 @@ public class Main {
                     int id = Integer.parseInt(JOptionPane.showInputDialog("Id: "));
 
                     Encomenda encomenda = new Encomenda(cliente, aparelho, descricao, categoria, id);
-
+                    JOptionPane.showMessageDialog(null, encomenda.toString());
                     try {
                         sistema.cadastrarEncomenda(id, encomenda);
                         System.out.println("OK!");
@@ -34,7 +34,7 @@ public class Main {
                         JOptionPane.showMessageDialog(null, e.getMessage());
                     }
                     break;
-                case 2:
+                case 2: // Consultar serviços agendados:
                     try {
                         JOptionPane.showMessageDialog(null, sistema.consultarServicosPendentes());
                     } catch (PesquisaException p) {
@@ -42,7 +42,7 @@ public class Main {
                         JOptionPane.showMessageDialog(null, p.getMessage());
                     }
                     break;
-                case 3:
+                case 3: // Consultar serviços prontos:
                     try {
                         JOptionPane.showMessageDialog(null, sistema.consultarServicosProntos());
                     } catch (PesquisaException p) {
@@ -50,7 +50,7 @@ public class Main {
                         JOptionPane.showMessageDialog(null, p.getMessage());
                     }
                     break;
-                case 4:
+                case 4: // Alterar status de serviço:
                     int pesquisando = Integer.parseInt(JOptionPane.showInputDialog("Digite o id do registro: "));
                     if (encomendas.containsKey(pesquisando)) {
                         System.out.println(encomendas.get(pesquisando).toString());
