@@ -1,5 +1,7 @@
-import Exceptions.CadastroException;
-import Exceptions.PesquisaException;
+package sistema.projeto;
+
+import sistema.projeto.exceptions.CadastroException;
+import sistema.projeto.exceptions.PesquisaException;
 
 import javax.swing.*;
 import java.util.HashMap;
@@ -66,6 +68,8 @@ public class Main {
                 case 5:
                     sair = true;
                     break;
+                case 6:
+                    System.out.println(encomendas.toString());
             }
         }
     }

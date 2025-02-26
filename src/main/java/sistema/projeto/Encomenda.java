@@ -1,8 +1,6 @@
-import java.io.IOException;
+package sistema.projeto;
+
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 public class Encomenda {
     private String aparelho;

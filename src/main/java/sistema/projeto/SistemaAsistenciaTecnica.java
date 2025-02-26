@@ -1,11 +1,11 @@
-import Exceptions.CadastroException;
-import Exceptions.PesquisaException;
+package sistema.projeto;
 
-import java.util.ArrayList;
-import java.util.List;
+import sistema.projeto.exceptions.CadastroException;
+import sistema.projeto.exceptions.PesquisaException;
+
 import java.util.Map;
 
-public class SistemaAsistenciaTecnica {
+public class SistemaAsistenciaTecnica implements EncomendasInterface {
 
     private Map<Integer, Encomenda> encomendas;
 
@@ -16,9 +16,9 @@ public class SistemaAsistenciaTecnica {
     public void cadastrarEncomenda (int id, Encomenda encomenda) throws CadastroException {
         if (!this.encomendas.containsKey(id)) {
             this.encomendas.put(id, encomenda);
-            System.out.println("Encomenda " + id + " cadastrada com sucesso!");
+            System.out.println("sistema.projeto.Encomenda " + id + " cadastrada com sucesso!");
         } else {
-            throw new CadastroException("Encomenda já cadatrada no sistema");
+            throw new CadastroException("sistema.projeto.Encomenda já cadatrada no sistema");
         }
     }
 
