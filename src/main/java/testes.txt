@@ -1,0 +1,31 @@
+// Testes repetitivos:
+        try {
+            sistema.cadastrarEncomenda(11, new Encomenda("Cliente A", "Aparelho A", "Descrição A", Categoria.MANUTENCAO, 11));
+            sistema.cadastrarEncomenda(22, new Encomenda("Cliente B", "Aparelho B", "Descrição B", Categoria.LIMPEZA, 22));
+            sistema.cadastrarEncomenda(33, new Encomenda("Cliente C", "Aparelho C", "Descrição C", Categoria.SOFTWARE, 33));
+
+        } catch (CadastroException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+dadas as seguintes classes:
+public class GravadorDeDados { public static final String ARQUIVOS_ENCOMENDAS = "encomendas.dat"; public Map<Integer, Encomenda> recuperarDados() throws IOException {try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(ARQUIVOS_ENCOMENDAS))) {return (Map<Integer, Encomenda>) in.readObject();} catch (ClassNotFoundException c) {throw new IOException(c);}}public void salvarDados (Map<Integer, Encomenda> encomendas) throws IOException {try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(ARQUIVOS_ENCOMENDAS))) {out.writeObject(encomendas);}}}
+
+public class SistemaAssistenciaTecnica {
+
+private Map<Integer, Encomenda> encomendas;
+    private GravadorDeDados gravador;
+
+    SistemaAsistenciaTecnica(Map<Integer, Encomenda> encomendas){
+        this.encomendas = encomendas;
+        this.gravador = new GravadorDeDados();
+    }
+
+@Override
+    public void salvarDados(Map<Integer, Encomenda> encomendas) throws IOException {
+        this.gravador.salvarDados(this.encomendas);
+    }
+@Override
+    public void recuperarDados() throws IOException {
+        this.encomendas = this.gravador.recuperarDados();
+    }
+}
