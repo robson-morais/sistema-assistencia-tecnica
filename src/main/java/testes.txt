@@ -1,3 +1,5 @@
+Elaboração de perguntas para tirar dúvidas com IA.
+
 // Testes repetitivos:
         try {
             sistema.cadastrarEncomenda(11, new Encomenda("Cliente A", "Aparelho A", "Descrição A", Categoria.MANUTENCAO, 11));
