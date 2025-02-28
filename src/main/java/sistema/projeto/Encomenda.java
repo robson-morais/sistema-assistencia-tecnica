@@ -1,8 +1,9 @@
 package sistema.projeto;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Encomenda {
+public class Encomenda implements Serializable {
     private String aparelho;
     private String descricao;
     private Categoria categoria;
