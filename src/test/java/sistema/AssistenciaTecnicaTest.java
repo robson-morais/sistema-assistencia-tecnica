@@ -1,9 +1,9 @@
-package sistema.projeto;
+package sistema;
 
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
-import sistema.projeto.exceptions.CadastroException;
-import sistema.projeto.exceptions.PesquisaException;
+import sistema.exceptions.CadastroException;
+import sistema.exceptions.PesquisaException;
 
 import java.util.HashMap;
 import java.util.Map;
