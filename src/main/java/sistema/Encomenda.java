@@ -2,38 +2,33 @@ package sistema;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Encomenda implements Serializable {
     private String aparelho;
     private String descricao;
     private Categoria categoria;
-    private String proprietario;
     private LocalDate dataEntrada = LocalDate.now();
     private LocalDate dataSaidaPrevista = LocalDate.now().plusDays(15);
     private String status;
-    private int id;
+    private String id;
 
 
-    public Encomenda(String cliente, String aparelho, String descricao, Categoria categoria, int codigo) {
-        this.proprietario = cliente;
+    public Encomenda(String aparelho, String descricao, Categoria categoria, String cpf) {
         this.aparelho = aparelho;
         this.descricao = descricao;
         this.categoria = categoria;
-        this.id = codigo;
+        this.id = cpf;
         this.status = "A FAZER";
     }
 
     public Encomenda() {
-        this("", "", "", Categoria.INDEFINIDO, 0);
+        this("", "", Categoria.INDEFINIDO, "Cliente não identificado");
     }
 
 
     public String getAparelho() {
         return aparelho;
-    }
-
-    public void setAparelho(String aparelho) {
-        this.aparelho = aparelho;
     }
 
     public String getDescricao() {
@@ -42,14 +37,6 @@ public class Encomenda implements Serializable {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public String getProprietario() {
-        return proprietario;
-    }
-
-    public void setProprietario(String proprietario) {
-        this.proprietario = proprietario;
     }
 
     public Categoria getCategoria() {
@@ -64,23 +51,43 @@ public class Encomenda implements Serializable {
         return dataSaidaPrevista;
     }
 
-    public int getId() {
-        return this.id;
+    public String getIdToString() {
+        String [] C = this.id.split("");
+        //TODO: Otimizar os intervalos entre 0-2, 3-4, 6-8 e 9-10;
+        String cpfFormatado = C[0] + C[1] + C[2] + "." + C[3] + C[4] + C[5] + "." + C[6] + C[7] + C[8] + "-" + C[9] + C[10];
+        return cpfFormatado;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatus(String novoStatus) {
+        this.status = novoStatus;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Encomenda encomenda = (Encomenda) o;
+        return id == encomenda.id && Objects.equals(aparelho, encomenda.aparelho);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(aparelho, id);
     }
 
     @Override
     public String toString() {
-        return "====================\nObjeto com status " + status.toUpperCase() + " {\n" +
-                "Aparelho = " + aparelho  + ",\ndescrição = " + descricao + ",\nproprietario = " + proprietario +
-                ",\nData de entrada = " + dataEntrada + ",\nData de saida prevista = " + dataSaidaPrevista + "\nID = " + id + "}\n";
+        return " ====================\nObjeto com status " + status.toUpperCase() + " {\n" +
+                "Aparelho = " + aparelho  + ",\nDescrição = " + descricao +
+                ",\nData de entrada = " + dataEntrada + ",\nData de saida prevista = " + dataSaidaPrevista + "\nCPF do cliente = " + getIdToString()+ "}\n";
+    }
+
+    public static void main(String[] args) {
+        Encomenda a = new Encomenda("Aparelho", "Descrição", Categoria.LIMPEZA, "12887204408");
+        System.out.println(a.getIdToString());
     }
 }
 

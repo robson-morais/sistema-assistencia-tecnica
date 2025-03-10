@@ -11,19 +11,19 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
 
-        Map<Integer, Encomenda> encomendas = new HashMap<>();
-        SistemaAsistenciaTecnica sistema = new SistemaAsistenciaTecnica(encomendas);
+        SistemaAssistenciaTecnica sistema = new SistemaAssistenciaTecnica();
 
-        /*GravadorDeDados gravador = new GravadorDeDados();
+        //GravadorDeDados gravador = new GravadorDeDados();
 
         boolean dadosSalvos = false;
-
+        /* 
         try {
             encomendas = gravador.recuperarDados();
             dadosSalvos = true;
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }*/
+        }
+        */
 
         boolean sair = false;
         int contador = 0;
@@ -32,24 +32,26 @@ public class Main {
 
             // A String 'MensagemMenu' informa se os dados da última sessão foram salvos e
             // o texto contido nela depende do valor da booleana 'dadosSalvos'.
-            String mensagemMenu = "(o gravador de dados não conseguiu salvar os dados no sistema)";
-            /*
-            if (dadosSalvos){
+            String mensagemMenu = "o gravador de dados não conseguiu salvar os dados no sistema.";
+
+            if (dadosSalvos)
                 mensagemMenu = "Os dados do sistema estão atualizados";
-            }*/
 
             contador = Integer.parseInt(JOptionPane.showInputDialog("[Informação: " + mensagemMenu + "]\n\nGERECIAMENTO DE ATENDIMENTOS:\n\n1. Cadastrar serviço;\n2. Listar todos os serviços encomendados;\n3. Consultar serviços agendados;\n4. Consultar serviços prontos\n5. Alterar status de serviço\n6. Sair"));
             switch (contador) {
                 case 1: //Cadastrar serviço:
-                    String cliente =  JOptionPane.showInputDialog("Nome do cliente: ");
-                    String aparelho = JOptionPane.showInputDialog("Tipo de aparelho: ");
-                    String descricao = JOptionPane.showInputDialog("Descrição do Serviço: ");
+                    String aparelho = JOptionPane.showInputDialog("Tipo de aparelho:\nex.: Celular, computador, tablet, ect.");
+                    String descricao = JOptionPane.showInputDialog("Descrição do Serviço:\nex.: troca de tela, formatação, troca de bateria, etc.)");
                     String categoriaString = JOptionPane.showInputDialog("Categoria: ");
                     Categoria categoria = sistema.stringToEnum(categoriaString);
-                    int id = Integer.parseInt(JOptionPane.showInputDialog("Id: "));
+                    String id = JOptionPane.showInputDialog("CPF do cliente: ");
+                    while (id.length() != 11) {
+                        JOptionPane.showMessageDialog(null, "Formato de cpf inválido.\nO CPF precisa ter 11 dígitos (Apenas números).");
+                        id = JOptionPane.showInputDialog("CPF do cliente: ");
+                    }
 
-                    Encomenda encomenda = new Encomenda(cliente, aparelho, descricao, categoria, id);
-                    JOptionPane.showMessageDialog(null, encomenda.toString());
+                    Encomenda encomenda = new Encomenda(aparelho, descricao, categoria, id);
+                    JOptionPane.showMessageDialog(null, "Encomenda registrada no sistema:\n" + encomenda.toString());
                     try {
                         sistema.cadastrarEncomenda(id, encomenda);
                         System.out.println("OK!");
@@ -60,7 +62,7 @@ public class Main {
                     break;
 
                 case 2: // Exibir todas as encomendas:
-                    JOptionPane.showMessageDialog(null, encomendas.toString());
+                    //JOptionPane.showMessageDialog(null, .toString());
                     break;
 
                 case 3: // Consultar serviços agendados:
@@ -82,10 +84,10 @@ public class Main {
                     break;
 
                 case 5: // Alterar status de serviço:
-                    int pesquisando = Integer.parseInt(JOptionPane.showInputDialog("Digite o id do registro: "));
+                    String pesquisando = JOptionPane.showInputDialog("Digite o CPF do cliente ");
                     if (encomendas.containsKey(pesquisando)) {
                         System.out.println(encomendas.get(pesquisando).toString());
-                        String novoStatus = JOptionPane.showInputDialog("Digite o novo status para este registro: ");
+                        String novoStatus = JOptionPane.showInputDialog("Digite o novo status para este registro de encomenda: ");
                         try {
                             sistema.pesquisarParaAlterar(pesquisando, novoStatus);
                         } catch (PesquisaException p) {
@@ -94,14 +96,16 @@ public class Main {
                         }
                     }
                     break;
-
+                    
                 case 6:
-                    /*try {
+                    /*
+                    try {
                         sistema.salvarDados(encomendas);
                         JOptionPane.showMessageDialog(null, "Dados salvos no sistema!");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
-                    }*/
+                    }
+                    */
                     sair = true;
                     break;
             }

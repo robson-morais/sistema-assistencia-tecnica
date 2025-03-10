@@ -9,17 +9,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SistemaAsistenciaTecnica implements EncomendasInterface {
+public class SistemaAssistenciaTecnica implements EncomendasInterface {
 
-    private Map<Integer, Encomenda> encomendas;
+    private Map<String, Encomenda> encomendas;
     private GravadorDeDados gravador;
 
-    SistemaAsistenciaTecnica(Map<Integer, Encomenda> encomendas){
-        this.encomendas = encomendas;
+    public SistemaAssistenciaTecnica(){
+        this.encomendas = new HashMap<>();
         this.gravador = new GravadorDeDados();
     }
 
-    public void cadastrarEncomenda (int id, Encomenda encomenda) throws CadastroException {
+    public void cadastrarEncomenda (String id, Encomenda encomenda) throws CadastroException {
         if (!this.encomendas.containsKey(id)) {
             this.encomendas.put(id, encomenda);
             System.out.println("sistema.projeto.Encomenda " + id + " cadastrada com sucesso!");
@@ -28,14 +28,20 @@ public class SistemaAsistenciaTecnica implements EncomendasInterface {
         }
     }
 
-    public void pesquisarParaAlterar (int pesquisaId, String novoStatus) throws PesquisaException {
+    public List<Encomenda> listarTodasAsEncomendas() {
+        List<Encomenda> encomendasList = new ArrayList<>();
+        for (Encomenda en: this.encomendas.values()) {
+            encomendasList.add(en);
+        } return encomendasList;
+    }
+
+    public void pesquisarParaAlterar (String pesquisaId, String novoStatus) throws PesquisaException {
         Encomenda encomendaEncontrada = this.encomendas.get(pesquisaId);
         if (this.encomendas.values().contains(encomendaEncontrada)) {
             encomendaEncontrada.setStatus(novoStatus);
         } else {
             throw new PesquisaException("Serviço não encontrado no sistema.");
         }
-
     }
 
     public List<Encomenda> consultarServicosPendentes () throws PesquisaException {
@@ -67,7 +73,7 @@ public class SistemaAsistenciaTecnica implements EncomendasInterface {
     }
 
     @Override
-    public void salvarDados(Map<Integer, Encomenda> encomendas) throws IOException {
+    public void salvarDados(Map<String, Encomenda> encomendas) throws IOException {
         this.gravador.salvarDados(this.encomendas);
     }
 

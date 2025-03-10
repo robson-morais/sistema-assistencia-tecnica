@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 public interface EncomendasInterface {
-    void cadastrarEncomenda (int id, Encomenda encomenda) throws CadastroException;
-    void pesquisarParaAlterar (int id, String novoStatus) throws PesquisaException;
+    void cadastrarEncomenda (String id, Encomenda encomenda) throws CadastroException;
+    void pesquisarParaAlterar (String id, String novoStatus) throws PesquisaException;
     List<Encomenda> consultarServicosPendentes () throws PesquisaException;
     List<Encomenda> consultarServicosProntos () throws PesquisaException;
-    void salvarDados(Map<Integer, Encomenda> encomendas) throws IOException;
+    void salvarDados(Map<String, Encomenda> encomendas) throws IOException;
     void recuperarDados() throws IOException;
 }

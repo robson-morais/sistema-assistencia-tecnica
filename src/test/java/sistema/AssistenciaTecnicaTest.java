@@ -10,21 +10,22 @@ import java.util.Map;
 
 public class AssistenciaTecnicaTest {
 
-    @Test
-    public void testaSistema() {
-        Map<Integer, Encomenda> encomendas = new HashMap<>();
-        SistemaAsistenciaTecnica sistema = new SistemaAsistenciaTecnica(encomendas);
+    private Map<Integer, Encomenda> encomendas;
+    private SistemaAsistenciaTecnica sistema;
 
-        try {
-            // Cadastro:
-            sistema.cadastrarEncomenda(11, new Encomenda("Robson", "iPhone 6s", "Troca de tela", Categoria.MANUTENCAO, 11));
-            // Pesquisar serviços pendentes:
-            sistema.consultarServicosPendentes();
-            // Altera status de serviço;
-            sistema.pesquisarParaAlterar(11,"Feito");
-        } catch (PesquisaException | CadastroException c) {
-            c.printStackTrace();
-        }
+    @BeforeEach
+    void setUp(){
+        this.encomendas = new HashMap<>();
+        this.sistema = new SistemaAsistenciaTecnica(encomendas);
     }
 
+    @Test
+    public void testaCadastro() {
+        Encomenda enc1 = new Encomenda("cliente a", "aparelho a", "descrição a",Categoria.MANUTENCAO,11);
+        try {
+            sistema.cadastrarEncomenda(enc1.getId(), enc1);
+        } catch (CadastroException c) {
+            System.out.println(c.getMessage());
+        }
+    }
 }

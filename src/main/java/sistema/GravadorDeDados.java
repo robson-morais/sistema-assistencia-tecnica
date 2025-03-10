@@ -7,17 +7,17 @@ import java.util.Map;
 
 public class GravadorDeDados {
 
-    public static final String ARQUIVOS_ENCOMENDAS = "encomendas.dat";
+    public static final String ARQUIVOS_ENCOMENDAS = "encomendas.txt";
 
-    public Map<Integer, Encomenda> recuperarDados() throws IOException {
+    public Map<String, Encomenda> recuperarDados() throws IOException {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(ARQUIVOS_ENCOMENDAS))) {
-            return (Map<Integer, Encomenda>) in.readObject();
+            return (Map<String, Encomenda>) in.readObject();
         } catch (ClassNotFoundException | FileNotFoundException c) {
             return new HashMap<>();
         }
     }
 
-    public void salvarDados (Map<Integer, Encomenda> encomendas) throws IOException {
+    public void salvarDados (Map<String, Encomenda> encomendas) throws IOException {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(ARQUIVOS_ENCOMENDAS))) {
             out.writeObject(encomendas);
         }
