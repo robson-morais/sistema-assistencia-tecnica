@@ -92,4 +92,8 @@ public class SistemaAssistenciaTecnica implements EncomendasInterface {
         } return ctg;
     }
 
+    public boolean existe(String id) {
+        return this.encomendas.containsKey(id);
+    }
+
 }

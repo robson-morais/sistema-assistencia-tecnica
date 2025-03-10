@@ -13,7 +13,10 @@ import javax.swing.JPanel;
 
 import sistema.SistemaAssistenciaTecnica;
 import sistema.*;
+import sistema.controller.AlterarStatusController;
 import sistema.controller.ListarTudoController;
+import sistema.controller.ServicosAgendadosController;
+import sistema.controller.ServicosProntosController;
 import sistema.controller.SistemaCadastroController;
 
 public class SistemaGUI extends JFrame{
@@ -22,7 +25,6 @@ public class SistemaGUI extends JFrame{
     JButton botaoCadastro, botaoListarTudo, botaoAfazer, botaoProntos, botaoAlterar;
 
     SistemaAssistenciaTecnica sistema = new SistemaAssistenciaTecnica();
-
 
     public SistemaGUI() {
         setTitle("Gerenciamento de Encomendas");
@@ -50,10 +52,13 @@ public class SistemaGUI extends JFrame{
         botaoListarTudo.addActionListener(new ListarTudoController(sistema, this));
 
         botaoAfazer = new JButton("Consultar serviços agendados");
+        botaoAfazer.addActionListener(new ServicosAgendadosController(sistema, this));
 
         botaoProntos = new JButton("Consultar serviços finalizados");
+        botaoProntos.addActionListener(new ServicosProntosController(sistema, this));
 
         botaoAlterar = new JButton("Alterar Status de serviço");
+        botaoAlterar.addActionListener(new AlterarStatusController(sistema, this));
 
         // Adicionar botões ao painel
         painelBotoes.add(linha3);

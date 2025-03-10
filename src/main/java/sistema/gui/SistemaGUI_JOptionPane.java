@@ -1,5 +1,8 @@
-package sistema;
+package sistema.gui;
 
+import sistema.Categoria;
+import sistema.Encomenda;
+import sistema.SistemaAssistenciaTecnica;
 import sistema.exceptions.CadastroException;
 import sistema.exceptions.PesquisaException;
 
@@ -8,7 +11,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Main {
+public class SistemaGUI_JOptionPane {
     public static void main(String[] args) {
 
         SistemaAssistenciaTecnica sistema = new SistemaAssistenciaTecnica();
@@ -62,7 +65,7 @@ public class Main {
                     break;
 
                 case 2: // Exibir todas as encomendas:
-                    //JOptionPane.showMessageDialog(null, .toString());
+                    JOptionPane.showMessageDialog(null, sistema.listarTodasAsEncomendas());
                     break;
 
                 case 3: // Consultar serviços agendados:
@@ -83,10 +86,9 @@ public class Main {
                     }
                     break;
 
-                case 5: // Alterar status de serviço:
+                case 5: // TODO: Alterar status de serviço:
                     String pesquisando = JOptionPane.showInputDialog("Digite o CPF do cliente ");
-                    if (encomendas.containsKey(pesquisando)) {
-                        System.out.println(encomendas.get(pesquisando).toString());
+                    if (sistema.existe(pesquisando)) {
                         String novoStatus = JOptionPane.showInputDialog("Digite o novo status para este registro de encomenda: ");
                         try {
                             sistema.pesquisarParaAlterar(pesquisando, novoStatus);
