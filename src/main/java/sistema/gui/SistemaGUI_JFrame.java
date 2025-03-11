@@ -19,14 +19,16 @@ import sistema.controller.ServicosAgendadosController;
 import sistema.controller.ServicosProntosController;
 import sistema.controller.SistemaCadastroController;
 
-public class SistemaGUI extends JFrame{
+public class SistemaGUI_JFrame extends JFrame{
     JLabel linha1, linha2, linha3;
-    ImageIcon imagem = new ImageIcon("/home/r0bstark/IdeaProjects/sistema-assistencia-tecnica/Resources/Imagens/blur.jpeg");
+    //ImageIcon imagem = new ImageIcon("/home/r0bstark/IdeaProjects/sistema-assistencia-tecnica/Resources/Imagens/blur.jpeg");
+    ImageIcon imagem = new ImageIcon("Resources/Imagens/blur.jpeg");
+
     JButton botaoCadastro, botaoListarTudo, botaoAfazer, botaoProntos, botaoAlterar;
 
     SistemaAssistenciaTecnica sistema = new SistemaAssistenciaTecnica();
 
-    public SistemaGUI() {
+    public SistemaGUI_JFrame() {
         setTitle("Gerenciamento de Encomendas");
         setSize(1280, 720);
         setLocation(0, 0);
@@ -79,7 +81,7 @@ public class SistemaGUI extends JFrame{
         add(linha2);
     }
     public static void main(String [] args){
-        JFrame janela = new SistemaGUI();
+        JFrame janela = new SistemaGUI_JFrame();
         janela.setVisible(true);
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

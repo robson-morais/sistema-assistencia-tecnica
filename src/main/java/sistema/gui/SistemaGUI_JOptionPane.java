@@ -2,6 +2,7 @@ package sistema.gui;
 
 import sistema.Categoria;
 import sistema.Encomenda;
+import sistema.GravadorDeDados;
 import sistema.SistemaAssistenciaTecnica;
 import sistema.exceptions.CadastroException;
 import sistema.exceptions.PesquisaException;
@@ -15,18 +16,18 @@ public class SistemaGUI_JOptionPane {
     public static void main(String[] args) {
 
         SistemaAssistenciaTecnica sistema = new SistemaAssistenciaTecnica();
-
-        //GravadorDeDados gravador = new GravadorDeDados();
+        GravadorDeDados gravador = new GravadorDeDados();
+        Map<String, Encomenda> encomendas = new HashMap<>();
 
         boolean dadosSalvos = false;
-        /* 
+        
         try {
             encomendas = gravador.recuperarDados();
             dadosSalvos = true;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        */
+        
 
         boolean sair = false;
         int contador = 0;
@@ -100,14 +101,13 @@ public class SistemaGUI_JOptionPane {
                     break;
                     
                 case 6:
-                    /*
                     try {
                         sistema.salvarDados(encomendas);
                         JOptionPane.showMessageDialog(null, "Dados salvos no sistema!");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                    */
+                
                     sair = true;
                     break;
             }

@@ -92,6 +92,10 @@ public class SistemaAssistenciaTecnica implements EncomendasInterface {
         } return ctg;
     }
 
+    public Map<String, Encomenda> getEncomendas() {
+        return this.encomendas;
+    }
+
     public boolean existe(String id) {
         return this.encomendas.containsKey(id);
     }
