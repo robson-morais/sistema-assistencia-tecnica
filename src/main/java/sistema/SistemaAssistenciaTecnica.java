@@ -38,56 +38,29 @@ public class SistemaAssistenciaTecnica implements EncomendasInterface {
 
     public void pesquisarParaAlterar (String pesquisaId, String novoStatus) throws PesquisaException {
         Servico encomendaEncontrada = this.encomendas.get(pesquisaId);
-        if (this.encomendas.values().contains(encomendaEncontrada)) {
+        if (encomendaEncontrada != null) {
             encomendaEncontrada.setStatus(novoStatus);
         } else {
             throw new PesquisaException("Serviço não encontrado no sistema.");
         }
     }
 
-    public List<Servico> consultarServicosPendentes () throws PesquisaException {
-        List<Servico> encomendasEncontradas = new ArrayList<>();
-
-        if (!this.encomendas.isEmpty()) {
-            for (Servico enc: this.encomendas.values()) {
-                if (enc.getStatus().equalsIgnoreCase("A fazer")){
-                    encomendasEncontradas.add(enc);
-                }
-            } return encomendasEncontradas;
-        } else {
-            throw new PesquisaException("Não há serviços pendentes no sistema.");
-        }
-    }
-
-    public List<Servico> consultarServicosProntos () throws PesquisaException {
-        List<Servico> encomendasEncontradas2 = new ArrayList<>();
-
-        if (!this.encomendas.isEmpty()) {
-            for (Servico enc: this.encomendas.values()) {
-                if (enc.getStatus().equalsIgnoreCase("Pronto")){
-                    encomendasEncontradas2.add(enc);
-                }
-            } return encomendasEncontradas2;
-        } else {
-            throw new PesquisaException("Nenhum serviço com status 'Pronto' foi cadastrado no sistema.");
-        }
-    }
 
     public List<Servico> consultarServicosPorStatus(String status) {
 
-        List<Servico> servicos = new ArrayList<>();
+        List<Servico> servicosComStatus = new ArrayList<>();
         if (!this.encomendas.isEmpty()) {
             for (Servico servico: this.encomendas.values()) {
                 if (servico.getStatus().equalsIgnoreCase(status))
-                servicos.add(servico);
+                servicosComStatus.add(servico);
             }
         }
-        return servicos;
+        return servicosComStatus;
     }
 
     @Override
-    public void salvarDados(Map<String, Servico> encomendas) throws IOException {
-        this.gravador.salvarDados(this.encomendas);
+    public void salvarDados() throws IOException {
+        this.gravador.salvarDados(encomendas);
     }
 
     @Override

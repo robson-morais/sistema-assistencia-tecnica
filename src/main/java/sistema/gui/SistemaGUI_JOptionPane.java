@@ -70,34 +70,32 @@ public class SistemaGUI_JOptionPane {
                     break;
 
                 case 3: // Consultar serviços agendados:
-                   
+                    JOptionPane.showMessageDialog(null, sistema.consultarServicosPorStatus("A fazer"));
                     break;
 
                 case 4: // Consultar serviços prontos:
-                    
+                    JOptionPane.showMessageDialog(null, sistema.consultarServicosPorStatus("Pronto"));
                     break;
 
                 case 5: // TODO: Alterar status de serviço:
                     String pesquisando = JOptionPane.showInputDialog("Digite o CPF do cliente ");
-                    if (sistema.existe(pesquisando)) {
-                        String novoStatus = JOptionPane.showInputDialog("Digite o novo status para este registro de encomenda: ");
+                    String novoStatus = JOptionPane.showInputDialog("Digite o novo status para este registro de encomenda: ");
                         try {
                             sistema.pesquisarParaAlterar(pesquisando, novoStatus);
                         } catch (PesquisaException p) {
                             p.printStackTrace();
                             JOptionPane.showMessageDialog(null, p.getMessage());
                         }
-                    }
+
                     break;
                     
                 case 6:
                     try {
-                        sistema.salvarDados(encomendas);
+                        sistema.salvarDados();
                         JOptionPane.showMessageDialog(null, "Dados salvos no sistema!");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                
                     sair = true;
                     break;
             }
