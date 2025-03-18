@@ -19,7 +19,7 @@ import sistema.controller.ServicosAgendadosController;
 import sistema.controller.ServicosProntosController;
 import sistema.controller.SistemaCadastroController;
 
-public class SistemaGUI_JFrame extends JFrame{
+public class SistemaGUI_JFrame extends JFrame {
     JLabel linha1, linha2, linha3;
     //ImageIcon imagem = new ImageIcon("/home/r0bstark/IdeaProjects/sistema-assistencia-tecnica/Resources/Imagens/blur.jpeg");
     ImageIcon imagem = new ImageIcon("Resources/Imagens/blur.jpeg");

@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Encomenda implements Serializable {
+import sistema.enums.Categoria;
+
+public class Servico implements Serializable {
     private String aparelho;
     private String descricao;
     private Categoria categoria;
@@ -14,7 +16,7 @@ public class Encomenda implements Serializable {
     private String id;
 
 
-    public Encomenda(String aparelho, String descricao, Categoria categoria, String cpf) {
+    public Servico(String aparelho, String descricao, Categoria categoria, String cpf) {
         this.aparelho = aparelho;
         this.descricao = descricao;
         this.categoria = categoria;
@@ -22,8 +24,8 @@ public class Encomenda implements Serializable {
         this.status = "A FAZER";
     }
 
-    public Encomenda() {
-        this("", "", Categoria.INDEFINIDO, "Cliente não identificado");
+    public Servico() {
+        this("", "", Categoria.OUTROS, "Cliente não identificado");
     }
 
 
@@ -69,7 +71,7 @@ public class Encomenda implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Encomenda encomenda = (Encomenda) o;
+        Servico encomenda = (Servico) o;
         return id == encomenda.id && Objects.equals(aparelho, encomenda.aparelho);
     }
 
@@ -86,7 +88,7 @@ public class Encomenda implements Serializable {
     }
 
     public static void main(String[] args) {
-        Encomenda a = new Encomenda("Aparelho", "Descrição", Categoria.LIMPEZA, "12887204408");
+        Servico a = new Servico("Aparelho", "Descrição", Categoria.LIMPEZA, "12887204408");
         System.out.println(a.getIdToString());
     }
 }

@@ -6,9 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import sistema.Categoria;
 import sistema.Encomenda;
 import sistema.SistemaAssistenciaTecnica;
+import sistema.enums.Categoria;
 import sistema.exceptions.CadastroException;
 
 public class SistemaCadastroController implements ActionListener {

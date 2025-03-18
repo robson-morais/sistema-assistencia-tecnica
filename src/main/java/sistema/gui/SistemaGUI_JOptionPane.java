@@ -1,9 +1,9 @@
 package sistema.gui;
 
-import sistema.Categoria;
-import sistema.Encomenda;
+import sistema.Servico;
 import sistema.GravadorDeDados;
 import sistema.SistemaAssistenciaTecnica;
+import sistema.enums.Categoria;
 import sistema.exceptions.CadastroException;
 import sistema.exceptions.PesquisaException;
 
@@ -17,7 +17,7 @@ public class SistemaGUI_JOptionPane {
 
         SistemaAssistenciaTecnica sistema = new SistemaAssistenciaTecnica();
         GravadorDeDados gravador = new GravadorDeDados();
-        Map<String, Encomenda> encomendas = new HashMap<>();
+        Map<String, Servico> encomendas = new HashMap<>();
 
         boolean dadosSalvos = false;
         
@@ -54,7 +54,7 @@ public class SistemaGUI_JOptionPane {
                         id = JOptionPane.showInputDialog("CPF do cliente: ");
                     }
 
-                    Encomenda encomenda = new Encomenda(aparelho, descricao, categoria, id);
+                    Servico encomenda = new Servico(aparelho, descricao, categoria, id);
                     JOptionPane.showMessageDialog(null, "Encomenda registrada no sistema:\n" + encomenda.toString());
                     try {
                         sistema.cadastrarEncomenda(id, encomenda);
@@ -70,21 +70,11 @@ public class SistemaGUI_JOptionPane {
                     break;
 
                 case 3: // Consultar serviços agendados:
-                    try {
-                        JOptionPane.showMessageDialog(null, sistema.consultarServicosPendentes());
-                    } catch (PesquisaException p) {
-                        p.printStackTrace();
-                        JOptionPane.showMessageDialog(null, p.getMessage());
-                    }
+                   
                     break;
 
                 case 4: // Consultar serviços prontos:
-                    try {
-                        JOptionPane.showMessageDialog(null, sistema.consultarServicosProntos());
-                    } catch (PesquisaException p) {
-                        p.printStackTrace();
-                        JOptionPane.showMessageDialog(null, p.getMessage());
-                    }
+                    
                     break;
 
                 case 5: // TODO: Alterar status de serviço:
