@@ -20,16 +20,25 @@ public class SistemaAssistenciaTecnica implements EncomendasInterface {
         this.gravador = new GravadorDeDados();
     }
 
+    public SistemaAssistenciaTecnica(Map<String, Servico> encomendas) {
+        this.encomendas = encomendas;
+        this.gravador = new GravadorDeDados();
+    }
+
     public void cadastrarEncomenda (String id, Servico encomenda) throws CadastroException {
         if (!this.encomendas.containsKey(id)) {
             this.encomendas.put(id, encomenda);
-            System.out.println("sistema.projeto.Encomenda " + id + " cadastrada com sucesso!");
+            System.out.println("Encomenda " + id + " cadastrada com sucesso!");
         } else {
-            throw new CadastroException("sistema.projeto.Encomenda já cadatrada no sistema");
+            throw new CadastroException("ncomenda já cadatrada no sistema");
         }
     }
 
-    public List<Servico> listarTodasAsEncomendas() {
+    public Map<String, Servico> getServicos() {
+        return this.encomendas;
+    }
+
+    public List<Servico> getServicosString() {
         List<Servico> encomendasList = new ArrayList<>();
         for (Servico en: this.encomendas.values()) {
             encomendasList.add(en);
@@ -76,10 +85,6 @@ public class SistemaAssistenciaTecnica implements EncomendasInterface {
                 ctg = cat;
             }
         } return ctg;
-    }
-
-    public Map<String, Servico> getEncomendas() {
-        return this.encomendas;
     }
 
     public boolean existe(String id) {

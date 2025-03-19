@@ -15,9 +15,9 @@ import java.util.Map;
 public class SistemaGUI_JOptionPane {
     public static void main(String[] args) {
 
-        SistemaAssistenciaTecnica sistema = new SistemaAssistenciaTecnica();
-        GravadorDeDados gravador = new GravadorDeDados();
         Map<String, Servico> encomendas = new HashMap<>();
+        SistemaAssistenciaTecnica sistema = new SistemaAssistenciaTecnica(encomendas);
+        GravadorDeDados gravador = new GravadorDeDados();
 
         boolean dadosSalvos = false;
         
@@ -66,7 +66,7 @@ public class SistemaGUI_JOptionPane {
                     break;
 
                 case 2: // Exibir todas as encomendas:
-                    JOptionPane.showMessageDialog(null, sistema.listarTodasAsEncomendas());
+                    JOptionPane.showMessageDialog(null, sistema.getServicosString());
                     break;
 
                 case 3: // Consultar serviços agendados:
