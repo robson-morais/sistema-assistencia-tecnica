@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import sistema.Encomenda;
+import sistema.Servico;
 import sistema.SistemaAssistenciaTecnica;
 import sistema.enums.Categoria;
 import sistema.exceptions.CadastroException;
@@ -32,7 +32,7 @@ public class SistemaCadastroController implements ActionListener {
             id = JOptionPane.showInputDialog("CPF do cliente: ");
         }
 
-        Encomenda encomenda = new Encomenda(aparelho, descricao, categoria, id);
+        Servico encomenda = new Servico(aparelho, descricao, categoria, id);
         JOptionPane.showMessageDialog(null, "Encomenda registrada no sistema:\n" + encomenda.toString());
         try {
             sistema.cadastrarEncomenda(id, encomenda);

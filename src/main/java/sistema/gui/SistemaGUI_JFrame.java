@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 import sistema.SistemaAssistenciaTecnica;
 import sistema.*;
 import sistema.controller.AlterarStatusController;
-import sistema.controller.ListarTudoController;
 import sistema.controller.ServicosAgendadosController;
 import sistema.controller.ServicosProntosController;
 import sistema.controller.SistemaCadastroController;
@@ -24,7 +23,7 @@ public class SistemaGUI_JFrame extends JFrame {
     //ImageIcon imagem = new ImageIcon("/home/r0bstark/IdeaProjects/sistema-assistencia-tecnica/Resources/Imagens/blur.jpeg");
     ImageIcon imagem = new ImageIcon("Resources/Imagens/blur.jpeg");
 
-    JButton botaoCadastro, botaoListarTudo, botaoAfazer, botaoProntos, botaoAlterar;
+    JButton botaoCadastro, botaoAfazer, botaoProntos, botaoAlterar;
 
     SistemaAssistenciaTecnica sistema = new SistemaAssistenciaTecnica();
 
@@ -50,9 +49,6 @@ public class SistemaGUI_JFrame extends JFrame {
         botaoCadastro = new JButton("Cadastrar serviço");
         botaoCadastro.addActionListener(new SistemaCadastroController(sistema, this));
 
-        botaoListarTudo = new JButton("Listar todos os serviços registrados");
-        botaoListarTudo.addActionListener(new ListarTudoController(sistema, this));
-
         botaoAfazer = new JButton("Consultar serviços agendados");
         botaoAfazer.addActionListener(new ServicosAgendadosController(sistema, this));
 
@@ -65,7 +61,6 @@ public class SistemaGUI_JFrame extends JFrame {
         // Adicionar botões ao painel
         painelBotoes.add(linha3);
         painelBotoes.add(botaoCadastro);
-        painelBotoes.add(botaoListarTudo);
         painelBotoes.add(botaoAfazer);
         painelBotoes.add(botaoProntos);
         painelBotoes.add(botaoAlterar);

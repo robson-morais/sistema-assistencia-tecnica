@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import sistema.SistemaAssistenciaTecnica;
-import sistema.exceptions.PesquisaException;
 
 public class ServicosAgendadosController implements ActionListener {
     private SistemaAssistenciaTecnica sistema;
@@ -20,11 +19,7 @@ public class ServicosAgendadosController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-        try {
-            JOptionPane.showMessageDialog(null, sistema.consultarServicosPendentes());
-        } catch (PesquisaException p) {
-            p.printStackTrace();
-            JOptionPane.showMessageDialog(null, p.getMessage());
-        }
+            String status = "A fazer";
+            JOptionPane.showMessageDialog(null, sistema.consultarServicosPorStatus(status));
     }
 }

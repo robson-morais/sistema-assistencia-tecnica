@@ -3,9 +3,11 @@ package sistema;
 import sistema.enums.Categoria;
 import sistema.exceptions.CadastroException;
 import sistema.exceptions.PesquisaException;
+import static java.util.stream.Collectors.toList;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,8 +57,15 @@ public class SistemaAssistenciaTecnica implements EncomendasInterface {
     }
 
 
-    public List<Servico> consultarServicosPorStatus(String status) {
+    @Override
+    public Collection<Servico> consultarServicosPorStatus(String status) {
 
+        return this.encomendas.values().stream().
+        filter(servico -> servico.getStatus().
+        equalsIgnoreCase(status)).toList();
+
+    }
+        /* 
         List<Servico> servicosComStatus = new ArrayList<>();
         if (!this.encomendas.isEmpty()) {
             for (Servico servico: this.encomendas.values()) {
@@ -64,8 +73,7 @@ public class SistemaAssistenciaTecnica implements EncomendasInterface {
                 servicosComStatus.add(servico);
             }
         }
-        return servicosComStatus;
-    }
+        return servicosComStatus;*/
 
     @Override
     public void salvarDados() throws IOException {
